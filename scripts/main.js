@@ -1,8 +1,9 @@
 let canvas = document.getElementById("myCanvas");
 let ctx = canvas.getContext("2d");
 
-let x = canvas.width / 2
-let y = canvas.height - 30;
+let x = (canvas.width / 2) + 10;
+let y = canvas.height /2 ;
+
 
 let dx = 2;
 let dy = -2;
@@ -17,7 +18,6 @@ let score = 0;
 let ballSize = 10;
 
 //Function creates the initial ball
-
 function drawBall(){
     ctx.beginPath();
     ctx.arc(x,y,ballSize, 0, Math.PI*2);
@@ -26,6 +26,13 @@ function drawBall(){
     ctx.closePath();
 }
 
+function drawCharacter(){
+    ctx.beginPath();
+    ctx.arc(canvas.width/2 ,canvas.height - 60,ballSize, 0, Math.PI*2);
+    ctx.fillStyle = "#FF3131";
+    ctx.fill();
+    ctx.closePath();
+}
 
 //Draw the score in the top right corner of the canvas
 function drawScore(){
@@ -54,6 +61,9 @@ function draw(){
 
     //draws the lives
     drawLives();
+
+    //draw character
+    drawCharacter();
 
     //Change the x and y values of the ball
     x += dx;

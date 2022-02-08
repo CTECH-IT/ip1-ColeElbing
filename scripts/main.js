@@ -10,7 +10,7 @@ let dy = -2;
 //create lives
 let lives = 3;
 
-//create a score meter
+//score
 let score = 0;
 
 // Creating the dodgeable object
@@ -26,34 +26,20 @@ function drawBall(){
     ctx.closePath();
 }
 
+
 //Draw the score in the top right corner of the canvas
 function drawScore(){
     ctx.font = "16px Arial";
     ctx.fillStyle = "#0095DD";
-    ctx.fillText("Score: " + score, canvas.width-60, 20);
+    ctx.fillText("Score: " + score, 5, 20);
 }
 
 //Draws the lives in the top right of the canvas below the score.
 function drawLives(){
     ctx.font = "16px Arial";
     ctx.fillStyle = "#0095DD";
-    ctx.fillText("Lives: " + lives, canvas.width-60, 40);
+    ctx.fillText("Lives: " + lives, canvas.width-60, 20);
 }
-
-//Score Increase
-
-let n = 4;
-
-function scoreIncrease(){
-    while (lives > 0){
-        score = score + n
-        if (lives == lives--){
-            n -= n;
-        }
-    }
-}
-
-
 
 //Drawing all of the objects
 function draw(){
@@ -65,9 +51,6 @@ function draw(){
 
     //draws the score
     drawScore();
-
-    //changes the score
-    scoreIncrease();
 
     //draws the lives
     drawLives();
@@ -83,8 +66,18 @@ function draw(){
     if (y + dy > canvas.height - ballSize || y + dy < ballSize){
         dy = -dy;
     }
+
 }
 
+function counter(){
+    let n = 4
+    if(lives > 0){
+        score = score + n;
+        if(lives = lives--){
+            n -= n;
+        }
+    }
+}
 
+let increase = setInterval(counter,1000);
 let interval = setInterval(draw, 10);
-let increase = setInterval(scoreIncrease,1000);
